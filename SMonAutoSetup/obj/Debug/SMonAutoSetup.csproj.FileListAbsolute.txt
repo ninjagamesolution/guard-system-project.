@@ -1,0 +1,6 @@
+E:\809_Dev\working_project\KSP\Target\SMonAutoSetup.exe.config
+E:\809_Dev\working_project\KSP\Target\SMonAutoSetup.exe
+E:\809_Dev\working_project\KSP\Target\SMonAutoSetup.pdb
+E:\809_Dev\working_project\KSP\Project1\SMonAutoSetup\obj\Debug\SMonAutoSetup.csproj.CoreCompileInputs.cache
+E:\809_Dev\working_project\KSP\Project1\SMonAutoSetup\obj\Debug\SMonAutoSetup.exe
+E:\809_Dev\working_project\KSP\Project1\SMonAutoSetup\obj\Debug\SMonAutoSetup.pdb
