@@ -1,0 +1,590 @@
+﻿<UserControl x:Class="Monitor.TaskControl.View.pnlSample"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Monitor.TaskControl.View"
+             xmlns:winformchart="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" BorderBrush="Black" BorderThickness="1"
+             Height="500" Width="auto" SizeChanged="UserControl_SizeChanged" >
+
+
+    <Grid  Background="White" MouseMove="OnMouseMove" MouseLeave="OnMouseLeave">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="470"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="UserInfoHeader" Background="#DD008B8B" Grid.RowSpan="2" Grid.ColumnSpan="2" MouseLeftButtonDown="DataGrid_MouseDown" MouseLeave="GrdHeader_MouseLeave" MouseMove="GrdHeader_MouseMove" Opacity="0.985">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1.1*"/>
+                <ColumnDefinition Width="1.4*"/>
+                <ColumnDefinition Width="1.6*"/>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition Width="1.8*"/>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="0.7*"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="0">
+                <StackPanel Orientation="Horizontal" >
+                    <Ellipse x:Name="eliForbiddenProcess" Margin="25,0" HorizontalAlignment="Center" VerticalAlignment="Center"  Fill="Gray"  Width="13" Height="13" />
+                </StackPanel>
+            </Grid>
+            <!--<Grid Grid.Column="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="11*"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="fldState" Content="State" FontSize="14" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center" Height="28" Margin="1,4,-4,4" Grid.RowSpan="2" Width="93" />
+            </Grid>-->
+            <Grid Grid.Column="1">
+                <Label x:Name="fldName" Content="Name" FontSize="15" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Label x:Name="fldIPAddr" Content="IP Address" FontSize="14" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Height="28" />
+            </Grid>
+            <Grid Grid.Column="3">
+                <Label x:Name="fldComputerName" Content="Computer Name" FontSize="14" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Height="28" />
+            </Grid>
+            <Grid Grid.Column="4">
+                <Label x:Name="fldOSDate" Content="OS Date" FontSize="14" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Height="28" />
+            </Grid>
+            <!--<Grid Grid.Column="6" >
+                <Label x:Name="fldUSB" Margin="-10, 0" Content="USB Connection" FontSize="12" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" />
+            </Grid>-->
+            <Grid Grid.Column="5">
+                <Label x:Name="fldAudio" Content="Audio" FontWeight="Bold" FontSize="17" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Height="30" />
+            </Grid>
+            <Grid Grid.Column="6">
+                <Label x:Name="fldURL" Content="URL" FontWeight="Bold" FontSize="17" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Height="30" />
+            </Grid>
+            <Grid Grid.Column="7">
+                <Label x:Name="fldDownload" Content="DownLoad" FontSize="17" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Height="30" />
+            </Grid>
+            <Grid Grid.Column="8">
+                <Label x:Name="dangerURL" Content="Danger URL" FontSize="17" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#DC143C" VerticalAlignment="Center" Height="30" />
+            </Grid>
+            <Grid Grid.Column="9">
+                <Label x:Name="fldForbiden" Content="Forbiden" FontSize="17" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#DC143C" VerticalAlignment="Center" Height="30" />
+            </Grid>
+            <Grid Grid.Column="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+                <!--FontFamily="{StaticResource FontAwesome}"<TextBlock x:Name="inspect" Text="&#xf241; 90% (128/450)" FontFamily="{StaticResource FontAwesome}" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" Padding="0,2" VerticalAlignment="Center" Height="25" Margin="0,10,0,0" />-->
+                <!--<StackPanel Orientation="Horizontal">-->
+                    <Image x:Name="progressInspect" Grid.Column="0" Height="21" Width="26"  Source="/Resource/0.png" Stretch="Uniform" RenderTransformOrigin="0.396,1.005" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,3,0,0">
+                    </Image>
+                    <Label x:Name="inspect" Grid.Column="1"  Content="0% (0/0)" FontFamily="{StaticResource FontAwesome}" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Foreground="Yellow" VerticalAlignment="Center" Height="30" Margin="0,9,0,0"/>
+
+                <!--</StackPanel>-->
+                            </Grid>
+            <Grid Grid.Column="11">
+                <Label x:Name="workTime" Content="Work Time" FontSize="17" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Height="30" />
+            </Grid>
+            <Grid Grid.Column="12" HorizontalAlignment="Center">
+                <Image  Height="20" Width="20"  Source="/Resource/message.png" Stretch="Uniform" RenderTransformOrigin="0.396,1.005" VerticalAlignment="Bottom" Margin="20,0,29,4">
+                </Image>
+                <Border x:Name="message_body"   Margin="25,2,0,10" Background="Red" HorizontalAlignment="Center"  CornerRadius="50" Width="16" Height="16">
+                    <Label x:Name="message_count" Width="16" HorizontalContentAlignment="Center"  Content="0" Padding="0,0.0,0,0" Foreground="White" Margin="0,0,0,-3"/>
+                </Border>
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFEDF0F1"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" MinHeight="0"/>
+                <RowDefinition Height="115"/>
+                <RowDefinition Height="234"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="9.5"/>
+                <ColumnDefinition Width="96.5"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30" />
+            </Grid.ColumnDefinitions>
+
+
+            <Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2">
+                <!--<StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,-200,0,0"></StackPanel>-->
+                <Image x:Name="AVARTA" Height="80" Width="80" Margin="12,0,14,140" Panel.ZIndex="1" Source="/Resource/Connect_Off.png" Stretch="Uniform" RenderTransformOrigin="0.396,1.005" VerticalAlignment="Bottom">
+                </Image>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="35,10,0,-40">
+                    <!--<Image Source="/Resource/Green.png" Width="14" Height="14" RenderTransformOrigin="0.7,0.35"/>-->
+                    <TextBlock  TextWrapping="Wrap" FontSize="9" Text="Audio &lt; 5 mins" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Width="93" />
+                    <!--<Image Source="/Resource/Green.png" Width="14" Height="14" RenderTransformOrigin="0.7,0.35"/>-->
+                </StackPanel>
+                <Border HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="#FF515151" BorderThickness="1" Margin="15,10,0,-40" >
+                    <StackPanel Height="13" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Width="13">
+                        <Rectangle  Fill="#FF1656E0" Width="13"/>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="35,70,0,-40">
+                    <!--<Image Source="/Resource/Green.png" Width="14" Height="14" RenderTransformOrigin="0.7,0.35"/>-->
+                    <TextBlock  TextWrapping="Wrap" FontSize="9" Text="Audio &gt; 5 mins" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Width="93" />
+                    <!--<Image Source="/Resource/Green.png" Width="14" Height="14" RenderTransformOrigin="0.7,0.35"/>-->
+                </StackPanel>
+                <Border HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="#FF515151" BorderThickness="1" Margin="15,70,0,-40" >
+                    <StackPanel Height="13" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Width="13">
+                        <Rectangle  Fill="#1b9dc3" Width="13"/>
+                    </StackPanel>
+                </Border>
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,205,0,0">
+                    <!--<Image Source="/Resource/Green.png" Width="14" Height="14" RenderTransformOrigin="0.7,0.35"/>-->
+                    <TextBlock  TextWrapping="Wrap" Text="Work" TextAlignment="Left" VerticalAlignment="Center" Margin="0" />
+                    <!--<Image Source="/Resource/Green.png" Width="14" Height="14" RenderTransformOrigin="0.7,0.35"/>-->
+                </StackPanel>
+                <Border HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="#FF515151" BorderThickness="1" Margin="15,200,0,-40" >
+                    <StackPanel Height="13" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Width="80">
+                        <Rectangle x:Name="WorkRect" Fill="#00B400" Width="60"/>
+                        <Rectangle x:Name="unWorkRect" Fill="#FFFFFFFF" Width="20"/>
+                    </StackPanel>
+                </Border>
+                <StackPanel Margin="8,229,0,-20" HorizontalAlignment="Center">
+                    <TextBlock x:Name="workText" Text="99" Margin="0, 0" Height="15" FontWeight="SemiBold" HorizontalAlignment="Left" />
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,242,0,-40">
+                    <!--<Image Source="/Resource/Red.png" Width="14" Height="14" RenderTransformOrigin="0.4,0.35"/>-->
+                    <TextBlock  TextWrapping="Wrap" Text="Rest" TextAlignment="Center" VerticalAlignment="Center" Margin="0"/>
+                </StackPanel>
+                <Border HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="#FF515151" BorderThickness="1" Margin="15,260,0,-55" >
+                    <StackPanel Height="13" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Width="80">
+                        <Rectangle x:Name="RestRect" Fill="#B40000" Width="24"/>
+                        <Rectangle x:Name="unRestRect" Fill="#FFFFFFFF" Width="56"/>
+                    </StackPanel>
+                </Border>
+                <StackPanel Grid.Row="0" Grid.Column="1" Margin="8,267,0,-50" HorizontalAlignment="Center">
+                    <TextBlock x:Name="restText" Text="99" Margin="0, 0" Height="15" FontWeight="SemiBold" HorizontalAlignment="Left" />
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,283,0,-75">
+                    <!--<Image Source="/Resource/Yellow.png" Width="14" Height="14" RenderTransformOrigin="0.7,0.35"/>-->
+                    <TextBlock TextWrapping="Wrap" Text="Disconnect" TextAlignment="Left" VerticalAlignment="Center" Margin="0"/>
+                </StackPanel>
+                <Border HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="#FF515151" BorderThickness="1" Margin="15,290,0,-100" >
+                    <StackPanel Height="13" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Width="81">
+                        <Rectangle x:Name="DisconnectRect" Fill="#FFB700" Width="60"/>
+                        <Rectangle x:Name="unDisconnectRect" Fill="#FFFFFFFF" Width="20"/>
+                    </StackPanel>
+                </Border>
+                <StackPanel Margin="8,304,0,-85" HorizontalAlignment="Center">
+                    <TextBlock  x:Name="disconnectText" Text="99" Margin="0, 0" Height="15" FontWeight="SemiBold" HorizontalAlignment="Left" />
+                </StackPanel>
+
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="2" Margin="0,0,0,-37" >
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="30" />
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="423*"/>
+
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="280"/>
+
+
+                </Grid.ColumnDefinitions>
+
+                <DataGrid x:Name="list2View" Margin="0,7,0,-53" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" CanUserResizeRows="False" IsReadOnly="True" GridLinesVisibility="None" SelectedItem="Flase" AutoGenerateColumns="False" CanUserResizeColumns="True" CanUserReorderColumns="False"  Background="White" BorderBrush="#FF676868" FontSize="12" >
+
+                    <DataGrid.Resources>
+                        <!--<LinearGradientBrush x:Key="HeaderBorderBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="White" />
+                            <GradientStop Color="White" Offset="0.1" />
+                            <GradientStop Color="#FF8C8C8C" Offset="0.52" />
+                        </LinearGradientBrush>-->
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="#FFFFA200" />
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="Height" Value="22"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding State}" Value="Danger">
+                                    <Setter Property="Background" Value="Tomato"></Setter>
+                                </DataTrigger>
+                                <!--<DataTrigger Binding="{Binding State}" Value="State2">
+                                    <Setter Property="Background" Value="Green"></Setter>
+                                </DataTrigger>-->
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns >
+                        <DataGridTemplateColumn Header="" Width="SizeToCells" IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Width="16" Height="16" Source="{Binding List2Icon}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Width="153" Header="Process" Binding="{Binding Process}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Process}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="*" Header="Duration" Binding="{Binding Time}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Time}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Grid Grid.Row="4" Grid.Column="0" Background="#DD575757" Margin="0,83,0,-75">
+                    <TextBox x:Name="processFilter" HorizontalAlignment="Left" Height="24" Margin="1,3,0,3" TextWrapping="Wrap" Text="Filter by process"  VerticalAlignment="Center" Width="95" TextAlignment="Left" VerticalContentAlignment ="Center" KeyDown="OnKeyDownHandler" GotFocus="ProcessFilter_GotFocus" LostFocus="ProcessFilter_LostFocus"/>
+                    <!--<Label Content="Filter by Process" FontSize="14" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center" Margin="150, 0" Width="180" Height="28" FontWeight="Bold" />-->
+                    <!--<Button x:Name="FilterProcessButton" Style="{DynamicResource RoundedSettingsButtonStyle}" Margin="152, 3" Width="80" HorizontalAlignment="Left"
+                        Content="Filter" FontWeight="Bold" Foreground="#FF40A6D1"  Background="#FFF7F7F7" Click="FilterProcessButton_Click"
+                        BorderBrush="#FF40A6D1" BorderThickness="2"  />-->
+                    <CheckBox x:Name="ALLProcessCheckBox" Style="{DynamicResource RoundedCheckBoxStyle}" FontSize="12"
+                        Click="ALLProcessCheckBox_Click"  Foreground="#FFFFFFFF" Content="Forbidden processes" HorizontalAlignment="Right" Margin="0,-1,3,-0" Width="140" />
+                </Grid>
+                <DataGrid x:Name="URLView" Margin="5,7,0,-53" Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" CanUserResizeRows="False" IsReadOnly="True" GridLinesVisibility="None" SelectedItem="{Binding SelectedRow, Mode=TwoWay}" AutoGenerateColumns="False" CanUserResizeColumns="True" CanUserReorderColumns="False" Height="auto"  Background="White" BorderBrush="#FF676868" FontSize="12" ContextMenuOpening="URLView_ContextMenuOpening_1" >
+                    <DataGrid.ContextMenu>
+                        <ContextMenu x:Name="menu" BorderBrush="Black" BorderThickness="1">
+                            <MenuItem Header="Copy URL" Click="CopyURL_Click" />
+                            <MenuItem Header="Go to URL" Click="GoToURL_Click" />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                </Trigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True"/>
+                                        <Condition Binding="{Binding IsKeyboardFocusWithin, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="False"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True"/>
+                                        <Condition Binding="{Binding ContextMenu.IsOpen, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="True"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                        <LinearGradientBrush x:Key="HeaderBorderBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+
+                            <GradientStop Color="#FF4682B4" Offset="0.52" />
+                        </LinearGradientBrush>
+                        <!--<LinearGradientBrush x:Key="HeaderBorderBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="White" />
+                            <GradientStop Color="White" Offset="0.1" />
+                            <GradientStop Color="#FF8C8C8C" Offset="0.52" />
+                        </LinearGradientBrush>-->
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="#FFFFA200" />
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="Height" Value="22"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding State}" Value="Danger">
+                                    <Setter Property="Background" Value="Tomato"></Setter>
+                                </DataTrigger>
+                                <!--<DataTrigger Binding="{Binding State}" Value="State2">
+                                    <Setter Property="Background" Value="Green"></Setter>
+                                </DataTrigger>-->
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns >
+                        <DataGridTemplateColumn Header="" Width="SizeToCells" IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Width="16" Height="16" Source="{Binding List2Icon}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Width="75" Header="Start Time" Binding="{Binding StartTime}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="ToolTip" Value="{Binding StartTime}" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="75" Header="End Time" Binding="{Binding EndTime}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="ToolTip" Value="{Binding EndTime}" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="*" Header="URL" Binding="{Binding strURL}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="ToolTip" Value="{Binding strURL}" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Grid Grid.Row="4" Grid.Column="1" Background="#DD575757" Margin="5,83,0,-75">
+                    <TextBox x:Name="urlFilter" HorizontalAlignment="Left" Height="24" Margin="1,3,0,3" TextWrapping="Wrap" Text="Filter by URL" VerticalAlignment="Center" Width="267" TextAlignment="Left" VerticalContentAlignment ="Center" KeyDown="UrlFilter_KeyDown" GotFocus="UrlFilter_GotFocus" LostFocus="UrlFilter_LostFocus" />
+                    <!--<Label Content="Filter by Process" FontSize="14" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center" Margin="150, 0" Width="180" Height="28" FontWeight="Bold" />-->
+                    <!--<Button x:Name="FilterURLButton" Style="{DynamicResource RoundedSettingsButtonStyle}" Margin="152, 3" Width="80" HorizontalAlignment="Left"
+                        Content="Filter" FontWeight="Bold" Foreground="#FF40A6D1"  Background="#FFF7F7F7"
+                        BorderBrush="#FF40A6D1" BorderThickness="2"  />-->
+                    <CheckBox x:Name="ALLURLCheckBox" Style="{DynamicResource RoundedCheckBoxStyle}" FontSize="12"
+                        Click="ALLURLCheckBox_Click" Foreground="#FFFFFFFF" Content="Danger URLs" Height="23" HorizontalAlignment="Right" Margin="0,-1,8,0" />
+
+
+                </Grid>
+                <Border Margin="5,7,0,-75" Grid.RowSpan="5" Grid.Column="3" BorderBrush="#FF515151" BorderThickness="1">
+                    <Grid Margin="0,0,0,-1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="42"/>
+                            <RowDefinition Height="42"/>
+                            <RowDefinition Height="11"/>
+                            <RowDefinition Height="42"/>
+                            <RowDefinition Height="42"/>
+                            <RowDefinition Height="11"/>
+                            <RowDefinition Height="42"/>
+                            <RowDefinition Height="42"/>
+                            <RowDefinition Height="50*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Row="0" Grid.ColumnSpan="1" Background="#FFFFA200" HorizontalAlignment="Stretch" >
+                            <!--<Label Content="Setting Information" FontSize="12" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Height="28" Margin="0,-3"/>-->
+
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Background="#FFCFCFCF" >
+                            <!--<Label Content="Capture Information" FontSize="12" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Height="25" Margin="0,-3"/>-->
+
+                        </StackPanel>
+
+                        <DockPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Center" Margin="0,0,0,0">
+                            <!--<Image Grid.RowSpan="3" Grid.Column="0" DockPanel.Dock="Left" Height="40" Width="40" Source="/Resource/Totalwork.png" Stretch="Uniform" Margin="0, 0, 0, 0" >
+                                <Image.OpacityMask>
+                                    <SolidColorBrush Color="#FFF7F6F6" Opacity="0.7"/>
+                                </Image.OpacityMask>
+                            </Image>-->
+                            <lvc:PieChart DockPanel.Dock="Left" BorderThickness="0.2" Height="58" FontSize="20"  Hoverable="True" DataTooltip="{x:Null}">
+                                <lvc:PieChart.Series>
+                                    <lvc:PieSeries x:Name="WorkPie"  Title="Work" Values="23" DataLabels="False" Fill="#00B400" />
+                                    <lvc:PieSeries x:Name="RestPie" Title="Rest" Values="4" DataLabels="False" Fill="#B40000"/>
+                                    <lvc:PieSeries x:Name="DisconnectPie" Title="Disconnect" Values="6" DataLabels="False" Fill="#FFB700" />
+                                    <lvc:PieSeries x:Name="FreePie" Title="Free" Values="10" DataLabels="False" />
+                                </lvc:PieChart.Series>
+                            </lvc:PieChart>
+                        </DockPanel>
+                        <DockPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"  HorizontalAlignment="Center" Margin="0,0,0,0">
+
+                            <!--<TextBlock DockPanel.Dock="Top" Margin="20,10,28,0" TextWrapping="Wrap" Text="Total Work Time" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22" FontSize="14" Width="145"/>-->
+                            <TextBlock Grid.Row="1"  DockPanel.Dock="Top" TextWrapping="Wrap" Text="Work Time :"  Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Width="65" Margin="0,15,0,0"/>
+                            <TextBlock  Grid.Row="3" DockPanel.Dock="Top" Margin="0,3,0,0" TextWrapping="Wrap" Text="Rest Time : " Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Width="59"/>
+                            <TextBlock  Grid.Row="3" DockPanel.Dock="Top" Margin="0,0,0,7" TextWrapping="Wrap" Text="Disconnect Time : " Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Width="100"/>
+
+                        </DockPanel>
+
+                        <TextBlock x:Name="TotalTime" Grid.Row="1" Grid.RowSpan="2"  TextWrapping="Wrap" Text=""  Grid.Column="2" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Width="93" Margin="0,0,0,36"/>
+                        <TextBlock x:Name="Rest" Grid.Row="1" Grid.RowSpan="2"  TextWrapping="Wrap" Text=""  Grid.Column="2" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Width="93" Margin="0,5,0,0"/>
+                        <TextBlock x:Name="Disconnect" Grid.Row="1" Grid.RowSpan="2" TextWrapping="Wrap" Text=""  Grid.Column="2" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Width="93" Margin="0,45,0,0"/>
+
+                        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" Background="#FFFFA200" >
+                            <!--<Label Content="Capture Information" FontSize="12" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Height="25" Margin="0,-3"/>-->
+
+                        </StackPanel>
+                        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Background="#FFCFCFCF"  >
+                            <!--<Label Content="Capture Information" FontSize="12" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Height="25" Margin="0,-3"/>-->
+
+                        </StackPanel>
+                        <DockPanel Grid.Row="4" Grid.RowSpan="2" Grid.Column="0"  HorizontalAlignment="Center" Margin="0,0,0,0">
+                            <Image DockPanel.Dock="Left" Height="45" Width="45" Source="/Resource/RestTime.png" Stretch="Uniform" Margin="0, 0, 0, 0" >
+                                <Image.OpacityMask>
+                                    <SolidColorBrush Color="#FFE2E2E2" Opacity="0.7"/>
+                                </Image.OpacityMask>
+                            </Image>
+                        </DockPanel>
+                        <DockPanel Grid.Row="4" Grid.RowSpan="2" Grid.Column="1"  HorizontalAlignment="Center" Margin="0,0,0,0">
+                            <TextBlock  DockPanel.Dock="Top" Margin="0,15,0,0" TextWrapping="Wrap" Text="Session Time :" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Width="98"/>
+                            <TextBlock  DockPanel.Dock="Top" TextWrapping="Wrap" Text="Capture Time : "  Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Margin="0,3,0,0" Width="98"/>
+                            <TextBlock  DockPanel.Dock="Top" TextWrapping="Wrap" Text="Active Time : "  Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Margin="0,0,0,7" Width="101"/>
+                        </DockPanel>
+
+                        <TextBlock x:Name="SessionTime" Grid.Row="4" Grid.RowSpan="2"  TextWrapping="Wrap" Text=""  Grid.Column="2" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Width="93" Margin="0,0,0,36"/>
+                        <TextBlock x:Name="CaptureTime" Grid.Row="4" Grid.RowSpan="2"  TextWrapping="Wrap" Text=""  Grid.Column="2" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Width="93" Margin="0,5,0,0"/>
+                        <TextBlock x:Name="ActiveTime" Grid.Row="4" Grid.RowSpan="2" TextWrapping="Wrap" Text=""  Grid.Column="2" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Width="93" Margin="0,45,0,0"/>
+
+                        <StackPanel Grid.Row="6" Grid.ColumnSpan="1" Background="#FFFFA200" HorizontalAlignment="Stretch" >
+                            <!--<Label Content="Time Information" FontSize="12" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Height="28" Margin="0,-3"/>-->
+
+                        </StackPanel>
+                        <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Background="#FFCFCFCF"  >
+                            <!--<Label Content="Capture Information" FontSize="12" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Height="25" Margin="0,-3"/>-->
+
+                        </StackPanel>
+                        <DockPanel Grid.Row="7" Grid.RowSpan="2" Grid.Column="0"  HorizontalAlignment="Center" Margin="0,0,0,0">
+                            <Image DockPanel.Dock="Left" Height="40" Width="40" Source="/Resource/SlideImage.png" Stretch="Uniform" Margin="0, 0, 0, 0" >
+                                <Image.OpacityMask>
+                                    <SolidColorBrush Color="White" Opacity="0.7"/>
+                                </Image.OpacityMask>
+                            </Image>
+                        </DockPanel>
+
+                        <DockPanel Grid.Row="7" Grid.RowSpan="2" Grid.Column="1"  HorizontalAlignment="Center" Margin="0,0,0,0">
+                            <TextBlock  DockPanel.Dock="Top" Margin="0,15,0,0" TextWrapping="Wrap" Text="Slide Image : " Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Width="98"/>
+                            <TextBlock  DockPanel.Dock="Top" TextWrapping="Wrap" Text="ScreenShot : "  Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Width="100" Margin="0,0,0,7"/>
+                        </DockPanel>
+
+                        <TextBlock x:Name="Slide" Grid.Row="7" Grid.RowSpan="2"  TextWrapping="Wrap" Text=""  Grid.Column="2" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Width="93" Margin="0,0,0,36"/>
+                        <TextBlock x:Name="Capture" Grid.Row="7" Grid.RowSpan="2"  TextWrapping="Wrap" Text=""  Grid.Column="2" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="12" Width="93" Margin="0,22,0,0"/>
+
+                        <!--<DockPanel Grid.Row="7" Grid.Column="3"  HorizontalAlignment="Center" Margin="15,0,0,0">
+                            <Image DockPanel.Dock="Left" Height="25" Width="25" Source="/Resource/SlideImage.png" Stretch="Uniform" Margin="0, 0, 0, 0" >
+                            </Image>
+                            <TextBlock x:Name="SlideImage" DockPanel.Dock="Bottom" Margin="10,0,0,0" TextWrapping="Wrap" Text="Slide Image : " Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" FontSize="14" Width="211"/>
+                            -->
+                        <!--<TextBlock x:Name="Rest" DockPanel.Dock="Bottom" TextWrapping="Wrap" Text="00:00:00 "  Grid.Column="3" TextAlignment="Center" VerticalAlignment="Center" Height="21" FontSize="16" Width="145" Margin="28,0"/>-->
+                        <!--
+                        </DockPanel>
+                        <DockPanel Grid.Row="6" Grid.Column="3"  HorizontalAlignment="Center" Margin="15,0,0,0">
+                            <Image DockPanel.Dock="Left" Height="25" Width="25" Source="/Resource/Capture.png" Stretch="Uniform" Margin="0, 0, 0, 0" >
+                            </Image>
+                            <TextBlock x:Name="Capture" DockPanel.Dock="Bottom" Margin="10,0,0,0" TextWrapping="Wrap" Text="ScreenShot : " Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" FontSize="14" Width="211"/>
+                            -->
+                        <!--<TextBlock x:Name="Rest" DockPanel.Dock="Bottom" TextWrapping="Wrap" Text="00:00:00 "  Grid.Column="3" TextAlignment="Center" VerticalAlignment="Center" Height="21" FontSize="16" Width="145" Margin="28,0"/>-->
+                        <!--
+                        </DockPanel>-->
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="21,2,18,-10" Height="38" Width="232" Grid.Row="9">
+                            <Button x:Name="btnShowState" Style="{DynamicResource RoundedSettingsButtonStyle1}" 
+                        Foreground="White" Padding="0 0" Background="#FFE8850E"
+                        BorderBrush="{x:Null}" BorderThickness="0" Width="73" Content="Remote" Margin="0,0,0,10" Click="BtnShowState_Click"  />
+                            <Button x:Name="SlideButton"  Style="{DynamicResource RoundedSettingsButtonStyle2}" Background="#EE228B22"
+                                    Foreground="White" BorderBrush="{x:Null}" BorderThickness="0"
+                                    Width="74" Content="Play" Margin="5,0,0,10" Click="SlideButton_Click" />
+                            <Button x:Name="ExplorerButton"  Style="{DynamicResource RoundedSettingsButtonStyle}" Background="#FF4682B4"
+                                    Foreground="White" BorderBrush="{x:Null}" BorderThickness="0"
+                                    Width="74" Content="Explorer" Margin="5,0,0,10" Click="ExplorerButton_Click" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="1" Margin="0,30,0,0" Grid.ColumnSpan="2" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,-50,0,0">
+                    <Label ToolTip="State" Content="&#xF015;" HorizontalContentAlignment="Center"
+                               FontFamily="pack://application:,,,/Resource/#FontAwesome" Foreground="#FF555555" FontSize="15" />
+                    <TextBlock TextWrapping="Wrap" Text=" WorkTime" TextAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <Label ToolTip="State" Content="&#xF002;" HorizontalContentAlignment="Center"
+                               FontFamily="pack://application:,,,/Resource/#FontAwesome" Foreground="#FF555555" FontSize="15" />
+                    <TextBlock TextWrapping="Wrap" Text=" Process" TextAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,50,0,0">
+                    <Label ToolTip="State" Content="&#xF001;" HorizontalContentAlignment="Center"
+                               FontFamily="pack://application:,,,/Resource/#FontAwesome" Foreground="#FF555555" FontSize="15" />
+                    <TextBlock TextWrapping="Wrap" Text=" Audio" TextAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="2" Margin="0,20,0,0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0,-16,0,82">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/Monitor.TaskControl;component/Resource/Ruler copy.png" Opacity="0.9"/>
+                    </StackPanel.Background>
+                </StackPanel>
+                <Border BorderBrush="#FF515151" BorderThickness="1" Margin="0,16,0,54" >
+                    <StackPanel x:Name="pnlProgTime" Orientation="Horizontal" MouseMove="WorkTime_Move" MouseLeave="WorkTime_Leave" Margin="0,0,0,0"  Width="auto"/>
+                </Border>
+                <Border x:Name="borderProgress"  BorderBrush="#FF515151" BorderThickness="1" Margin="0,44,0,27" >
+                    <StackPanel x:Name="pnlProgProcess" Orientation="Horizontal" Height="24"  MouseMove="Progress_Move" MouseLeave="Progress_Leave" Margin="0,0,0,0" Width="auto"/>
+                </Border>
+                <Border BorderBrush="#FF515151" BorderThickness="1" Margin="0,71,0,1" >
+                    <StackPanel x:Name="pnlProgAudio" Orientation="Horizontal" Margin="0,0,0,0" Height="20" Width="auto" MouseMove="PnlProgAudio_MouseMove" MouseLeave="PnlProgAudio_MouseLeave"/>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="339*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="85*"/>
+                </Grid.ColumnDefinitions>
+
+            </Grid>
+        </Grid>
+        <Grid  Grid.ColumnSpan="10" Grid.RowSpan="10">
+            <Canvas>
+                <StackPanel x:Name="grd_Popup" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="0" Canvas.Top="0" MouseMove="Grd_Popup_MouseMove">
+
+                </StackPanel>
+            </Canvas>
+        </Grid>
+
+
+    </Grid>
+</UserControl>
