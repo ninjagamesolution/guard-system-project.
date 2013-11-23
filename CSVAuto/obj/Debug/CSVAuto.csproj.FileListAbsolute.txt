@@ -1,7 +1,0 @@
-E:\809_Dev\working_project\KSP\Target\CSVAuto.exe.config
-E:\809_Dev\working_project\KSP\Target\CSVAuto.exe
-E:\809_Dev\working_project\KSP\Target\CSVAuto.pdb
-E:\809_Dev\working_project\KSP\Project1\CSVAuto\obj\Debug\CSVAuto.csprojAssemblyReference.cache
-E:\809_Dev\working_project\KSP\Project1\CSVAuto\obj\Debug\CSVAuto.csproj.CoreCompileInputs.cache
-E:\809_Dev\working_project\KSP\Project1\CSVAuto\obj\Debug\CSVAuto.exe
-E:\809_Dev\working_project\KSP\Project1\CSVAuto\obj\Debug\CSVAuto.pdb
