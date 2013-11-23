@@ -1,7 +1,0 @@
-E:\809_Dev\working_project\KSP\Target\SSVHost.exe.config
-E:\809_Dev\working_project\KSP\Target\SSVHost.exe
-E:\809_Dev\working_project\KSP\Target\SSVHost.pdb
-E:\809_Dev\working_project\KSP\Project1\SSVHost\obj\Debug\SSVHost.csproj.CoreCompileInputs.cache
-E:\809_Dev\working_project\KSP\Project1\SSVHost\obj\Debug\SSVHost.exe
-E:\809_Dev\working_project\KSP\Project1\SSVHost\obj\Debug\SSVHost.pdb
-E:\809_Dev\working_project\KSP\Project1\SSVHost\obj\Debug\SSVHost.csprojAssemblyReference.cache
