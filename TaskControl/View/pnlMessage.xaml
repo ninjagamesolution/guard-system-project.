@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Monitor.TaskControl.View.pnlMessage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Monitor.TaskControl.View"
+             mc:Ignorable="d" Width="212.91" Height="105" >
+    
+    <StackPanel Margin="3,3,3,10" Orientation="Vertical" >
+
+        <Label x:Name="lbl_time" Content="Label" Height="20" FontSize="10" FontFamily="SimSun" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFBFBEBE" Background="{x:Null}"/>
+
+        <Border x:Name="message_body"  BorderThickness="1" CornerRadius="5,5,0,0"  BorderBrush="#7F474747" Width="205" Background="#FF89D6F1" Grid.IsSharedSizeScope="True">
+           
+            <Grid MouseLeftButtonUp="Grid_MouseLeftButtonUp" Margin="0,0,0,-1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+
+                </Grid.RowDefinitions>
+                <Border    CornerRadius="4.5,4.5,0,0"  Background="Aqua" Grid.Row="0" x:Name="lbl_header">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="10*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="lbl_IP"  Content="KingStar" FontFamily="Calisto MT" Grid.IsSharedSizeScope="True" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="10" Background="{x:Null}" Foreground="White"/>
+                        <Label x:Name="lbl_Name"  Content="KingStar" FontFamily="Calisto MT" Grid.IsSharedSizeScope="True" Grid.Column="1" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" FontSize="10" Foreground="White"/>
+                    </Grid>
+                </Border>
+
+
+                <Label x:Name="lbl_type"  Content="Type" FontFamily="Calisto MT" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" FontSize="10" Margin="18,0,0,0" Foreground="#FF363636"/>
+                <Label x:Name="lbl_Message" Content="Test Message"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontFamily="Calisto MT" FontSize="10"  Grid.Row="2" Margin="18,0,0,1" Foreground="#FF2E2E2E"/>
+
+            </Grid>
+
+        </Border>
+
+    </StackPanel>
+</UserControl>
