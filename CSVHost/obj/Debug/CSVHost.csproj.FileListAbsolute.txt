@@ -1,0 +1,7 @@
+E:\809_Dev\working_project\KSP\Target\CSVHost.exe.config
+E:\809_Dev\working_project\KSP\Target\CSVHost.exe
+E:\809_Dev\working_project\KSP\Target\CSVHost.pdb
+E:\809_Dev\working_project\KSP\Project1\CSVHost\obj\Debug\CSVHost.csprojAssemblyReference.cache
+E:\809_Dev\working_project\KSP\Project1\CSVHost\obj\Debug\CSVHost.csproj.CoreCompileInputs.cache
+E:\809_Dev\working_project\KSP\Project1\CSVHost\obj\Debug\CSVHost.exe
+E:\809_Dev\working_project\KSP\Project1\CSVHost\obj\Debug\CSVHost.pdb
