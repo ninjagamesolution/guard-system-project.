@@ -1,7 +1,0 @@
-E:\809_Dev\working_project\KSP\Target\SSVAuto.exe.config
-E:\809_Dev\working_project\KSP\Target\SSVAuto.exe
-E:\809_Dev\working_project\KSP\Target\SSVAuto.pdb
-E:\809_Dev\working_project\KSP\Project1\SSVAuto\obj\Debug\SSVAuto.csprojAssemblyReference.cache
-E:\809_Dev\working_project\KSP\Project1\SSVAuto\obj\Debug\SSVAuto.csproj.CoreCompileInputs.cache
-E:\809_Dev\working_project\KSP\Project1\SSVAuto\obj\Debug\SSVAuto.exe
-E:\809_Dev\working_project\KSP\Project1\SSVAuto\obj\Debug\SSVAuto.pdb
